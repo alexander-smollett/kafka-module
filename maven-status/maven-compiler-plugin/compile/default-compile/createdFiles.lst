@@ -1,0 +1,12 @@
+org\brutforcer\kafka\events\KafkaEvent.class
+org\brutforcer\kafka\KafkaEventSender.class
+org\brutforcer\kafka\configuration\KafkaConfig.class
+org\brutforcer\kafka\events\EventCreator.class
+org\brutforcer\kafka\configuration\KafkaTopicConfig.class
+org\brutforcer\kafka\dto\EventBody.class
+org\brutforcer\kafka\configuration\KafkaProducerConfig.class
+org\brutforcer\kafka\dto\UserToKafkaDto.class
+org\brutforcer\kafka\dto\UserToKafkaDto$UserToKafkaDtoBuilder.class
+org\brutforcer\kafka\EventSender.class
+org\brutforcer\kafka\configuration\KafkaConsumerConfig.class
+org\brutforcer\kafka\events\KafkaEvent$Type.class

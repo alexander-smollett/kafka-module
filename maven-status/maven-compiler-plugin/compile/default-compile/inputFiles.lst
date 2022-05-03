@@ -1,0 +1,10 @@
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\events\KafkaEvent.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\configuration\KafkaConsumerConfig.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\configuration\KafkaTopicConfig.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\configuration\KafkaProducerConfig.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\EventSender.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\configuration\KafkaConfig.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\dto\UserToKafkaDto.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\events\EventCreator.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\KafkaEventSender.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\dto\EventBody.java
