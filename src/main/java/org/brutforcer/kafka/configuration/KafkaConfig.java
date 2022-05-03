@@ -11,8 +11,5 @@ import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 @EnableKafka
 @Configuration
 public class KafkaConfig {
-//    @Bean
-//    public RecordMessageConverter converter() {
-//        return new StringJsonMessageConverter();
-//    }
+
 }
