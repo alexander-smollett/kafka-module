@@ -1,0 +1,6 @@
+logging:
+  level:
+    root: info
+
+kafka:
+  host: localhost:9092
