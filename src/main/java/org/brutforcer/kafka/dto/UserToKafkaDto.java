@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.extern.jackson.Jacksonized;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Builder
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -16,6 +17,7 @@ public record UserToKafkaDto(
         String otherName,
         LocalDate birthDate,
         String sex,
-        String address
+        String address,
+        List<String>roleNames
 ) implements EventBody {
 }

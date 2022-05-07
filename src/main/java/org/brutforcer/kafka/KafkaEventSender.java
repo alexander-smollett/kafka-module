@@ -1,5 +1,6 @@
 package org.brutforcer.kafka;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.brutforcer.kafka.events.EventCreator;
 import org.brutforcer.kafka.events.KafkaEvent;
@@ -10,6 +11,7 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 
+@Slf4j
 @Service
 public class KafkaEventSender implements EventSender{
 
@@ -28,7 +30,10 @@ public class KafkaEventSender implements EventSender{
 
     @Override
     public <T> ListenableFuture<SendResult<Long, KafkaEvent>> sendEvent(KafkaEvent.Type type, T body) {
+        log.debug("IN sendEvent -> send event to kafka with type: {} and body: {}", type, body);
         KafkaEvent event = eventCreator.event(type, body);
-        return kafkaTemplate.send(topic.name(), event);
+        var send = kafkaTemplate.send(topic.name(), event);
+        log.info("IN sendEvent -> send event to kafka with type: {} successfully send. Body: {}", type, body);
+        return send;
     }
 }
