@@ -33,7 +33,7 @@ public class KafkaEventSender implements EventSender{
         log.debug("IN sendEvent -> send event to kafka with type: {} and body: {}", type, body);
         KafkaEvent event = eventCreator.event(type, body);
         var send = kafkaTemplate.send(topic.name(), event);
-        log.info("IN sendEvent -> send event to kafka with type: {} successfully send. Body: {}", type, body);
+        log.info("IN sendEvent -> event with type: {} successfully send to kafka. Body: {}", type, body);
         return send;
     }
 }
