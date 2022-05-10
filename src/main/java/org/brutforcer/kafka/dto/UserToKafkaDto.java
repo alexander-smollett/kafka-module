@@ -10,6 +10,7 @@ import java.util.List;
 @Builder
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public record UserToKafkaDto(
+        String id,
         String username,
         String password,
         String firstName,
