@@ -109,32 +109,32 @@
                     </execution>
                 </executions>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>com.github.github</groupId>-->
-<!--                <artifactId>site-maven-plugin</artifactId>-->
-<!--                <version>0.12</version>-->
-<!--                <configuration>-->
-<!--                    <message>Maven artifacts for ${project.version}</message>-->
-<!--                    <noJekyll>true</noJekyll>-->
-<!--                    <outputDirectory>${project.build.directory}</outputDirectory>-->
-<!--                    <branch>refs/heads/mvn-repo</branch>-->
-<!--                    <includes>-->
-<!--                        <include>**/*</include>-->
-<!--                    </includes>-->
-<!--                    <merge>true</merge>-->
-<!--                    <repositoryName>kafka-module</repositoryName>-->
-<!--                    <repositoryOwner>alexander-smollett</repositoryOwner>-->
-<!--                    <server>github</server>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <goals>-->
-<!--                            <goal>site</goal>-->
-<!--                        </goals>-->
-<!--                        <phase>deploy</phase>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <configuration>
+                    <message>Maven artifacts for ${project.version}</message>
+                    <noJekyll>true</noJekyll>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                    <branch>refs/heads/mvn-repo</branch>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                    <merge>true</merge>
+                    <repositoryName>kafka-module</repositoryName>
+                    <repositoryOwner>alexander-smollett</repositoryOwner>
+                    <server>github</server>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
