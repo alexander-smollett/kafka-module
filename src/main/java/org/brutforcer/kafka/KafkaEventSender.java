@@ -2,6 +2,7 @@ package org.brutforcer.kafka;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.brutforcer.kafka.dto.EventBody;
 import org.brutforcer.kafka.events.EventCreator;
 import org.brutforcer.kafka.events.KafkaEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +30,19 @@ public class KafkaEventSender implements EventSender{
     }
 
     @Override
-    public <T> ListenableFuture<SendResult<Long, KafkaEvent>> sendEvent(KafkaEvent.Type type, T body) {
+    public <T extends EventBody> ListenableFuture<SendResult<Long, KafkaEvent>> sendEvent(KafkaEvent.Type type, T body) {
         log.debug("IN sendEvent -> send event to kafka with type: {} and body: {}", type, body);
         KafkaEvent event = eventCreator.event(type, body);
         var send = kafkaTemplate.send(topic.name(), event);
         log.info("IN sendEvent -> event with type: {} successfully send to kafka. Body: {}", type, body);
+        return send;
+    }
+
+    @Override
+    public ListenableFuture<SendResult<Long, KafkaEvent>> sendEvent(KafkaEvent event) {
+        log.debug("IN sendEvent -> send event to kafka with type: {} and body: {}", event.type(), event.body());
+        var send = kafkaTemplate.send(topic.name(), event);
+        log.info("IN sendEvent -> event with type: {} successfully send to kafka. Body: {}", event.type(), event.body());
         return send;
     }
 }
