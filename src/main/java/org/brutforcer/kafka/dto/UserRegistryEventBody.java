@@ -1,15 +1,16 @@
 package org.brutforcer.kafka.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
-import lombok.extern.jackson.Jacksonized;
+import org.brutforcer.kafka.deserialize.EventDeserializer;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Builder
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public record UserToKafkaDto(
+public record UserRegistryEventBody(
         String id,
         String username,
         String password,

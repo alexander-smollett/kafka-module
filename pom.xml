@@ -15,6 +15,7 @@
         <spring-kafka.version>2.6.2</spring-kafka.version>
         <lombok.version>1.18.22</lombok.version>
         <spring-boot.version>2.6.2</spring-boot.version>
+        <jackson.datatype.version>2.13.0</jackson.datatype.version>
     </properties>
 
     <dependencies>
@@ -58,6 +59,12 @@
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
             <version>5.7.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.datatype.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

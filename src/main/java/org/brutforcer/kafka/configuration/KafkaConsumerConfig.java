@@ -1,8 +1,11 @@
 package org.brutforcer.kafka.configuration;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.LongDeserializer;
+import org.brutforcer.kafka.deserialize.EventDeserializer;
 import org.brutforcer.kafka.events.KafkaEvent;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +13,6 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.support.converter.RecordMessageConverter;
-import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
@@ -26,9 +27,18 @@ public class KafkaConsumerConfig {
     @Value("${kafka.group.id}")
     private String groupId;
 
+    private final Deserializer eventDeserializer;
+
+    @Autowired
+    public KafkaConsumerConfig(EventDeserializer eventDeserializer) {
+        this.eventDeserializer = eventDeserializer;
+    }
+
     @Bean
     public ConsumerFactory<Long, KafkaEvent> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(consumerConfigs());
+        var factory = new DefaultKafkaConsumerFactory<Long, KafkaEvent>(consumerConfigs());
+        factory.setValueDeserializer(eventDeserializer);
+        return factory;
     }
 
     @Bean
@@ -36,7 +46,6 @@ public class KafkaConsumerConfig {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, host);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         props.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class.getName());
         props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "org.brutforcer.kafka.events.KafkaEvent");
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
