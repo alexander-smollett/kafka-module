@@ -4,7 +4,8 @@ F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\configuration\KafkaProducerConfig.java
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\EventSender.java
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\configuration\KafkaConfig.java
-F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\dto\UserToKafkaDto.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\dto\UserRegistryEventBody.java
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\events\EventCreator.java
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\KafkaEventSender.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\deserialize\EventDeserializer.java
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\dto\EventBody.java
