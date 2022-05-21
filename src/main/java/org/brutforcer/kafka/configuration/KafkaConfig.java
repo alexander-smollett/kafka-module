@@ -11,7 +11,7 @@ import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 
 @EnableKafka
 @Configuration
-@ConditionalOnProperty(prefix = "kafka", name = "enable", havingValue = "true")
+@ConditionalOnProperty(prefix = "kafka", name = "enable", havingValue = "true", matchIfMissing = true)
 public class KafkaConfig {
 
 }
