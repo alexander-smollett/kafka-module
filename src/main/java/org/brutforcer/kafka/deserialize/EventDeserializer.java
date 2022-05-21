@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@ConditionalOnProperty(prefix = "kafka", name = "enable", value = "true")
+@ConditionalOnProperty(prefix = "kafka", name = "enable", havingValue = "true")
 public class EventDeserializer implements Deserializer<KafkaEvent> {
 
     private final ObjectMapper mapper;

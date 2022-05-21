@@ -15,7 +15,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 
 @Slf4j
 @Service
-@ConditionalOnProperty(prefix = "kafka", name = "mode", value = "default")
+@ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "default")
 public class KafkaEventSender implements EventSender{
 
     private final NewTopic topic;
