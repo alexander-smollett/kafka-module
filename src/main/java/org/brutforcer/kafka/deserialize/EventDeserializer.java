@@ -9,10 +9,12 @@ import org.brutforcer.kafka.dto.EventBody;
 import org.brutforcer.kafka.dto.UserRegistryEventBody;
 import org.brutforcer.kafka.events.KafkaEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@ConditionalOnProperty(prefix = "kafka", name = "enable", value = "true")
 public class EventDeserializer implements Deserializer<KafkaEvent> {
 
     private final ObjectMapper mapper;

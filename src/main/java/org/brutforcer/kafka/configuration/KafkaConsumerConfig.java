@@ -7,6 +7,7 @@ import org.brutforcer.kafka.deserialize.EventDeserializer;
 import org.brutforcer.kafka.events.KafkaEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
@@ -20,6 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
+@ConditionalOnProperty(prefix = "kafka", name = "mode", value = "default")
 public class KafkaConsumerConfig {
 
     @Value("${kafka.host}")

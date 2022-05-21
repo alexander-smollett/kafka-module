@@ -7,6 +7,7 @@ import org.brutforcer.kafka.events.EventCreator;
 import org.brutforcer.kafka.events.KafkaEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 
 @Slf4j
 @Service
+@ConditionalOnProperty(prefix = "kafka", name = "mode", value = "default")
 public class KafkaEventSender implements EventSender{
 
     private final NewTopic topic;
