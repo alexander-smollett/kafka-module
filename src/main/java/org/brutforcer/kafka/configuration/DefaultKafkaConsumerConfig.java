@@ -22,7 +22,7 @@ import java.util.Map;
 
 @Configuration
 @ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "default", matchIfMissing = true)
-public class KafkaConsumerConfig {
+public class DefaultKafkaConsumerConfig {
 
     @Value("${kafka.host}")
     private String host;
@@ -32,7 +32,7 @@ public class KafkaConsumerConfig {
     private final Deserializer eventDeserializer;
 
     @Autowired
-    public KafkaConsumerConfig(EventDeserializer eventDeserializer) {
+    public DefaultKafkaConsumerConfig(EventDeserializer eventDeserializer) {
         this.eventDeserializer = eventDeserializer;
     }
 

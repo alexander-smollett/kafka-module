@@ -1,9 +1,7 @@
 package org.brutforcer.kafka.configuration;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.LongSerializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.brutforcer.kafka.events.KafkaEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -19,7 +17,7 @@ import java.util.Map;
 
 @Configuration
 @ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "default", matchIfMissing = true)
-public class KafkaProducerConfig{
+public class DefaultKafkaProducerConfig {
 
     @Value("${kafka.host}")
     private String host;
