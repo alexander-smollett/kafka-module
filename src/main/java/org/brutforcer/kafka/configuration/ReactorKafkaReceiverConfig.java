@@ -1,8 +1,11 @@
 package org.brutforcer.kafka.configuration;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.LongDeserializer;
+import org.brutforcer.kafka.deserialize.EventDeserializer;
 import org.brutforcer.kafka.events.KafkaEvent;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -31,7 +34,15 @@ public class ReactorKafkaReceiverConfig {
 
     @Bean
     public KafkaReceiver<Long, KafkaEvent> kafkaReceiver() {
+        return new DefaultKafkaReceiver<Long, KafkaEvent>(
+                ConsumerFactory.INSTANCE,
+                ReceiverOptions.<Long, KafkaEvent>create(consumerConfigs())
+                        .subscription(Collections.singleton(topicName))
+        );
+    }
 
+    @Bean
+    public Map<String, Object> consumerConfigs() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, host);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
@@ -41,11 +52,6 @@ public class ReactorKafkaReceiverConfig {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.brutforcer.kafka.deserialize.EventDeserializer");
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
-
-        return new DefaultKafkaReceiver<Long, KafkaEvent>(
-                ConsumerFactory.INSTANCE,
-                ReceiverOptions.<Long, KafkaEvent>create(props)
-                        .subscription(Collections.singleton(topicName))
-        );
+        return props;
     }
 }

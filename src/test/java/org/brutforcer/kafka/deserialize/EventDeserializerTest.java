@@ -19,7 +19,7 @@ class EventDeserializerTest {
     private ObjectMapper mapper = JsonMapper.builder()
             .addModule(new JavaTimeModule())
             .build();
-    private EventDeserializer deserializer = new EventDeserializer(mapper);
+    private EventDeserializer deserializer = new EventDeserializer();
 
     @Test
     void deserialize() throws JsonProcessingException {
