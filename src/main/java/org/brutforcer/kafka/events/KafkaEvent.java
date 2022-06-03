@@ -1,7 +1,6 @@
 package org.brutforcer.kafka.events;
 
-import org.brutforcer.kafka.dto.EventBody;
-import org.brutforcer.kafka.dto.UserRegistryEventBody;
+import org.brutforcer.kafka.dto.*;
 
 public record KafkaEvent(
         Type type,
@@ -9,10 +8,10 @@ public record KafkaEvent(
 ){
 
     public enum Type {
-        REGISTRY_USER(UserRegistryEventBody.class),
-//        EDIT_USER(clazz)
-//        CONFIRM_USER(clazz)
-//        DELETE_USER(clazz)
+        USER_REGISTRY(UserRegistryEventBody.class),
+        USER_EDIT(UserEditEventBody.class),
+        USER_CONFIRM(UserConfirmEventBody.class),
+        USER_DELETE(UserDeleteEventBody.class)
 //        CREATE_PERSON(clazz),
 //        EDIT_PERSON(clazz),
 //        FOUND_FAMILY_RELATIONSHIP(clazz),

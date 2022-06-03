@@ -1,1 +1,3 @@
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\test\java\org\brutforcer\kafka\deserialize\EventDeserializerTest.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\test\java\org\brutforcer\kafka\events\EventCreatorTest.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\test\java\org\brutforcer\kafka\KafkaEventSenderTest.java

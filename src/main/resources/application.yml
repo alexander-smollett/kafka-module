@@ -3,4 +3,10 @@ logging:
     root: info
 
 kafka:
-  host: localhost:9092
+  enable: true
+  mode: default
+  host: localhost:29092
+  topic:
+    name: events
+  group:
+    id: test-group

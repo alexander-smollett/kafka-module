@@ -42,7 +42,10 @@ public class EventDeserializer implements Deserializer<KafkaEvent> {
 
             var type = KafkaEvent.Type.valueOf(json.get("type").asText());
             EventBody body = switch (type) {
-                case REGISTRY_USER -> mapper.readValue(json.get("body").toPrettyString(), UserRegistryEventBody.class);
+                case USER_REGISTRY -> mapper.readValue(json.get("body").toPrettyString(), KafkaEvent.Type.USER_REGISTRY.getClazz());
+                case USER_EDIT -> mapper.readValue(json.get("body").toPrettyString(), KafkaEvent.Type.USER_EDIT.getClazz());
+                case USER_CONFIRM -> mapper.readValue(json.get("body").toPrettyString(), KafkaEvent.Type.USER_CONFIRM.getClazz());
+                case USER_DELETE -> mapper.readValue(json.get("body").toPrettyString(), KafkaEvent.Type.USER_DELETE.getClazz());
             };
 
             return new KafkaEvent(type, body);
