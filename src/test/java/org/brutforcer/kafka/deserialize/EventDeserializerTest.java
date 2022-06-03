@@ -21,7 +21,7 @@ class EventDeserializerTest {
 
     @Test
     void deserialize() throws JsonProcessingException {
-        EventBody body = new UserRegistryEventBody(
+        EventBody body = gitnew UserRegistryEventBody(
                 "128",
                 "user",
                 "123",
