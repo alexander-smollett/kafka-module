@@ -12,8 +12,6 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class EventDeserializerTest {
 
     private ObjectMapper mapper = JsonMapper.builder()
@@ -35,7 +33,7 @@ class EventDeserializerTest {
                 "TUT",
                 Collections.emptyList()
         );
-        var event = new KafkaEvent(KafkaEvent.Type.REGISTRY_USER, body);
+        var event = new KafkaEvent(KafkaEvent.Type.USER_REGISTRY, body);
         var eventBytes = mapper.writeValueAsBytes(event);
         var deserializedEvent = deserializer.deserialize("X", eventBytes);
         System.out.println(deserializedEvent);

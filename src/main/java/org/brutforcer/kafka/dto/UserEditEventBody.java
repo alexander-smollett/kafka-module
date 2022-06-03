@@ -1,4 +1,13 @@
 package org.brutforcer.kafka.dto;
 
-public record UserEditEventBody() {
+import java.time.LocalDate;
+
+public record UserEditEventBody(
+        String firstName,
+        String lastName,
+        String otherName,
+        String sex,
+        LocalDate birthDate,
+        String address
+) implements EventBody {
 }

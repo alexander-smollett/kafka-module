@@ -17,9 +17,9 @@ public record UserRegistryEventBody(
         String firstName,
         String lastName,
         String otherName,
+        String email,
         LocalDate birthDate,
         String sex,
         String address,
         List<String>roleNames
-) implements EventBody {
-}
+) implements EventBody {}
