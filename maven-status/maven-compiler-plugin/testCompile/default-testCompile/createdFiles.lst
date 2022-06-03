@@ -1,1 +1,3 @@
+org\brutforcer\kafka\events\EventCreatorTest.class
+org\brutforcer\kafka\KafkaEventSenderTest.class
 org\brutforcer\kafka\deserialize\EventDeserializerTest.class
