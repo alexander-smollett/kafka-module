@@ -1,4 +1,4 @@
-package org.brutforcer.kafka;
+package org.brutforcer.kafka.senders;
 
 import org.brutforcer.kafka.dto.EventBody;
 import org.brutforcer.kafka.events.KafkaEvent;

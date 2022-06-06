@@ -1,10 +1,11 @@
-package org.brutforcer.kafka;
+package org.brutforcer.kafka.senders.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.brutforcer.kafka.dto.EventBody;
 import org.brutforcer.kafka.events.EventCreator;
 import org.brutforcer.kafka.events.KafkaEvent;
+import org.brutforcer.kafka.senders.EventSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -13,22 +14,29 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 
+import javax.annotation.PostConstruct;
+
 @Slf4j
 @Service
 @ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "default", matchIfMissing = true)
-public class KafkaEventSender implements EventSender{
+public class DefaultKafkaEventSender implements EventSender {
 
     private final NewTopic topic;
     private final EventCreator eventCreator;
     private final KafkaTemplate<Long, KafkaEvent> kafkaTemplate;
 
     @Autowired
-    public KafkaEventSender(@Qualifier("eventTopic") NewTopic topic,
-                            EventCreator eventCreator,
-                            KafkaTemplate<Long, KafkaEvent> kafkaTemplate) {
+    public DefaultKafkaEventSender(@Qualifier("eventTopic") NewTopic topic,
+                                   EventCreator eventCreator,
+                                   KafkaTemplate<Long, KafkaEvent> kafkaTemplate) {
         this.topic = topic;
         this.eventCreator = eventCreator;
         this.kafkaTemplate = kafkaTemplate;
+    }
+
+    @PostConstruct
+    void init(){
+        log.info("Kafka module set mode: default");
     }
 
     @Override

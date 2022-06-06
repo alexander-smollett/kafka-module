@@ -19,4 +19,5 @@ org\brutforcer\kafka\configuration\DefaultKafkaConsumerConfig.class
 org\brutforcer\kafka\dto\UserEditEventBody$UserEditEventBodyBuilder.class
 org\brutforcer\kafka\EventSender.class
 org\brutforcer\kafka\dto\UserConfirmEventBody.class
+org\brutforcer\kafka\DummyKafkaEventSender.class
 org\brutforcer\kafka\events\KafkaEvent$Type.class
