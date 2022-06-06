@@ -46,6 +46,7 @@ class EventCreatorTest {
     @Test
     void successfullyEditEvent() {
         EventBody body = new UserEditEventBody(
+                "USERNAME",
                 "NAME",
                 "LAST NAME",
                 "OTHER NAME",

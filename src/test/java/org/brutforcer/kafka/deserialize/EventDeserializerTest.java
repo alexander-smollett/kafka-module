@@ -47,6 +47,7 @@ class EventDeserializerTest {
     @Test
     void userEditDeserialize() throws JsonProcessingException {
         EventBody body = new UserEditEventBody(
+                "USERNAME",
                 "NAME",
                 "LAST NAME",
                 "OTHER NAME",
