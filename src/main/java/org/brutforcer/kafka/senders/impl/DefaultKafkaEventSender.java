@@ -18,7 +18,7 @@ import javax.annotation.PostConstruct;
 
 @Slf4j
 @Service
-@ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "default", matchIfMissing = true)
+@ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "default", matchIfMissing = false)
 public class DefaultKafkaEventSender implements EventSender {
 
     private final NewTopic topic;

@@ -18,7 +18,7 @@ import javax.annotation.PostConstruct;
 
 @Slf4j
 @Service
-@ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "reactive", matchIfMissing = true)
+@ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "reactive", matchIfMissing = false)
 public class ReactiveKafkaEventSender implements ReactiveEventSender {
 
     private final NewTopic topic;
