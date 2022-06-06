@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Builder
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public record UserEditEventBody(
+        String username,
         String firstName,
         String lastName,
         String otherName,
