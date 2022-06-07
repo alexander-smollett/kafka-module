@@ -12,8 +12,6 @@ import org.springframework.util.concurrent.ListenableFuture;
 import javax.annotation.PostConstruct;
 
 @Slf4j
-@Service
-@ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "off", matchIfMissing = true)
 public class DummyKafkaEventSender implements EventSender {
 
     @PostConstruct

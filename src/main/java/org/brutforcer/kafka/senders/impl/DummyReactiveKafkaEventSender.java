@@ -17,8 +17,6 @@ import reactor.kafka.sender.KafkaSender;
 import javax.annotation.PostConstruct;
 
 @Slf4j
-@Service
-@ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "off", matchIfMissing = true)
 public class DummyReactiveKafkaEventSender implements ReactiveEventSender {
 
     @PostConstruct

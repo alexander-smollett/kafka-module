@@ -8,6 +8,7 @@ F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\configuration\DefaultKafkaConsumerConfig.java
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\dto\UserRegistryEventBody.java
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\configuration\ReactiveKafkaProducerConfig.java
+F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\senders\impl\DummyReactiveKafkaEventSender.java
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\deserialize\EventDeserializer.java
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\dto\EventBody.java
 F:\TrainProject\FamilyTree_v1.1\kafka-module\src\main\java\org\brutforcer\kafka\events\KafkaEvent.java

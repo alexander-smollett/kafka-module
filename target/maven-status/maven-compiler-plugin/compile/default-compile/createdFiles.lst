@@ -22,4 +22,5 @@ org\brutforcer\kafka\configuration\DefaultKafkaProducerConfig.class
 org\brutforcer\kafka\deserialize\EventDeserializer.class
 org\brutforcer\kafka\dto\EventBody.class
 org\brutforcer\kafka\configuration\ReactiveKafkaProducerConfig.class
+org\brutforcer\kafka\senders\impl\DummyReactiveKafkaEventSender.class
 org\brutforcer\kafka\senders\ReactiveEventSender.class
