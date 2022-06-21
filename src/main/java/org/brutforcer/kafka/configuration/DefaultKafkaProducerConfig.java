@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "default", matchIfMissing = true)
+@ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "default", matchIfMissing = false)
 public class DefaultKafkaProducerConfig {
 
     @Value("${kafka.host}")

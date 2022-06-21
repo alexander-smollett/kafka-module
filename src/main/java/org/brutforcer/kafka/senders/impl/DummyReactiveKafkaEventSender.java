@@ -9,6 +9,7 @@ import org.brutforcer.kafka.events.KafkaEvent;
 import org.brutforcer.kafka.senders.ReactiveEventSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -17,6 +18,8 @@ import reactor.kafka.sender.KafkaSender;
 import javax.annotation.PostConstruct;
 
 @Slf4j
+@Service
+@ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "off", matchIfMissing = false)
 public class DummyReactiveKafkaEventSender implements ReactiveEventSender {
 
     @PostConstruct
