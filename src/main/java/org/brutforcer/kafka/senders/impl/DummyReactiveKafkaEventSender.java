@@ -1,21 +1,26 @@
 package org.brutforcer.kafka.senders.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.brutforcer.kafka.dto.EventBody;
+import org.brutforcer.kafka.events.EventCreator;
 import org.brutforcer.kafka.events.KafkaEvent;
-import org.brutforcer.kafka.senders.EventSender;
+import org.brutforcer.kafka.senders.ReactiveEventSender;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
-import org.springframework.util.concurrent.ListenableFuture;
+import reactor.core.publisher.Mono;
+import reactor.kafka.sender.KafkaSender;
 
 import javax.annotation.PostConstruct;
 
 @Slf4j
 @Service
 @ConditionalOnProperty(prefix = "kafka", name = "mode", havingValue = "off", matchIfMissing = false)
-public class DummyKafkaEventSender implements EventSender {
+public class DummyReactiveKafkaEventSender implements ReactiveEventSender {
 
     @PostConstruct
     void init(){
@@ -23,14 +28,14 @@ public class DummyKafkaEventSender implements EventSender {
     }
 
     @Override
-    public <T extends EventBody> ListenableFuture<SendResult<Long, KafkaEvent>> sendEvent(KafkaEvent.Type type, T body) {
+    public Mono<Void> sendEvent(KafkaEvent event) {
         log.warn("Kafka module has mode \"OFF\". Event NOT SENDING in kafka. In you need really sending events, change {kafka.mode} property to default or reactive");
-        return null;
+        return Mono.empty();
     }
 
     @Override
-    public ListenableFuture<SendResult<Long, KafkaEvent>> sendEvent(KafkaEvent event) {
+    public <T extends EventBody> Mono<Void> sendEvent(KafkaEvent.Type type, T body) {
         log.warn("Kafka module has mode \"OFF\". Event NOT SENDING in kafka. In you need really sending events, change {kafka.mode} property to default or reactive");
-        return null;
+        return Mono.empty();
     }
 }
