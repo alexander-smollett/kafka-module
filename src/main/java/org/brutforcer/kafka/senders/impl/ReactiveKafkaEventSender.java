@@ -15,6 +15,8 @@ import reactor.core.publisher.Mono;
 import reactor.kafka.sender.KafkaSender;
 
 import javax.annotation.PostConstruct;
+import java.nio.charset.StandardCharsets;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -24,6 +26,7 @@ public class ReactiveKafkaEventSender implements ReactiveEventSender {
     private final NewTopic topic;
     private final EventCreator eventCreator;
     private final KafkaSender<Long, KafkaEvent> sender;
+    private static final String CORRELATION_HEADER = "tmx-correlation-id";
 
     @Autowired
     public ReactiveKafkaEventSender(@Qualifier("eventTopic") NewTopic topic,
@@ -34,23 +37,38 @@ public class ReactiveKafkaEventSender implements ReactiveEventSender {
     }
 
     @PostConstruct
-    void init(){
+    void init() {
         log.info("Kafka module set mode: reactive");
     }
 
     @Override
+    public <T extends EventBody> Mono<Void> sendEvent(KafkaEvent.Type type, T body) {
+        return sendEvent(type, body, null);
+    }
+
+    @Override
+    public <T extends EventBody> Mono<Void> sendEvent(KafkaEvent.Type type, T body, UUID correlationId) {
+        return sendEvent(eventCreator.event(type, body), null);
+    }
+
+    @Override
     public Mono<Void> sendEvent(KafkaEvent event) {
+        return sendEvent(event, null);
+    }
+
+    @Override
+    public Mono<Void> sendEvent(KafkaEvent event, UUID correlationId) {
         return sender.createOutbound()
-                .send(Mono.just(new ProducerRecord<Long, KafkaEvent>(topic.name(), event)))
+                .send(Mono.just(record(event, correlationId)))
                 .then()
                 .doOnSuccess(ignore -> log.info("IN sendEvent -> event with type: {} successfully send to kafka. Body: {}", event.type(), event.body()));
     }
 
-    @Override
-    public <T extends EventBody> Mono<Void> sendEvent(KafkaEvent.Type type, T body) {
-        return sender.createOutbound()
-                .send(Mono.just(new ProducerRecord<Long, KafkaEvent>(topic.name(), eventCreator.event(type, body))))
-                .then()
-                .doOnSuccess(ignore -> log.info("IN sendEvent -> event with type: {} successfully send to kafka. Body: {}", type, body));
+    private ProducerRecord<Long, KafkaEvent> record(KafkaEvent event, UUID correlationId) {
+        ProducerRecord<Long, KafkaEvent> record = new ProducerRecord<>(topic.name(), event);
+        if (correlationId != null) {
+            record.headers().add(CORRELATION_HEADER, correlationId.toString().getBytes(StandardCharsets.UTF_8));
+        }
+        return record;
     }
 }

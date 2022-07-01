@@ -16,6 +16,7 @@ import reactor.core.publisher.Mono;
 import reactor.kafka.sender.KafkaSender;
 
 import javax.annotation.PostConstruct;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -29,13 +30,23 @@ public class DummyReactiveKafkaEventSender implements ReactiveEventSender {
 
     @Override
     public Mono<Void> sendEvent(KafkaEvent event) {
-        log.warn("Kafka module has mode \"OFF\". Event NOT SENDING in kafka. In you need really sending events, change {kafka.mode} property to default or reactive");
+        return sendEvent(event, null);
+    }
+
+    @Override
+    public Mono<Void> sendEvent(KafkaEvent event, UUID correlationId) {
+        log.warn("Kafka module has mode \"OFF\". Event NOT SENDING in kafka. In you need really sending events, change {kafka.mode} property to default or reactive\nEvent type: {}, correlation ID: {}, event body: {}", event.type(), correlationId, event.body());
         return Mono.empty();
     }
 
     @Override
     public <T extends EventBody> Mono<Void> sendEvent(KafkaEvent.Type type, T body) {
-        log.warn("Kafka module has mode \"OFF\". Event NOT SENDING in kafka. In you need really sending events, change {kafka.mode} property to default or reactive");
+        return sendEvent(type, body, null);
+    }
+
+    @Override
+    public <T extends EventBody> Mono<Void> sendEvent(KafkaEvent.Type type, T body, UUID correlationId) {
+        log.warn("Kafka module has mode \"OFF\". Event NOT SENDING in kafka. In you need really sending events, change {kafka.mode} property to default or reactive\nEvent type: {}, correlation ID: {}, event body: {}", type, correlationId, body);
         return Mono.empty();
     }
 }
