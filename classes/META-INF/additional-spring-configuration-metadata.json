@@ -1,0 +1,64 @@
+{
+  "groups": [
+    {
+      "name": "kafka",
+      "description": "Свойства модуля работы с шиной событий Kafka."
+    }
+  ],
+  "properties": [
+    {
+      "name": "kafka.enable",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "Включение отключение модуля."
+    },
+    {
+      "name": "kafka.mode",
+      "type": "java.lang.String",
+      "defaultValue": "reactive",
+      "description": "Переключение режима конфигурации."
+    },
+    {
+      "name": "kafka.host",
+      "type": "java.lang.String",
+      "defaultValue": "localhost:9092 ",
+      "description": "Адрес хоста kafka."
+    },
+    {
+      "name": "kafka.group.id",
+      "type": "java.lang.String",
+      "description": "Название группы потребителей (consumers)."
+    },
+    {
+      "name": "kafka.topic.name",
+      "type": "java.lang.String",
+      "description": "Наименование прослушиваемого топика в кафке."
+    }
+  ],
+  "hints": [
+    {
+      "name": "kafka.enable",
+      "values": [
+        {
+          "value": true
+        },
+        {
+          "value": false
+        }
+      ]
+    },
+    {
+      "name": "kafka.mode",
+      "values": [
+        {
+          "value": "default",
+          "description": "Синхронная реализация."
+        },
+        {
+          "value": "reactive",
+          "description": "Реактивная реализация."
+        }
+      ]
+    }
+  ]
+}

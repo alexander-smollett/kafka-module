@@ -4,6 +4,7 @@ org\brutforcer\kafka\deserialize\EventDeserializer$1.class
 org\brutforcer\kafka\dto\UserRegistryEventBody$UserRegistryEventBodyBuilder.class
 org\brutforcer\kafka\senders\impl\ReactiveKafkaEventSender.class
 org\brutforcer\kafka\dto\UserEditEventBody.class
+META-INF\spring-configuration-metadata.json
 org\brutforcer\kafka\configuration\ReactiveKafkaReceiverConfig.class
 org\brutforcer\kafka\dto\UserDeleteEventBody$UserDeleteEventBodyBuilder.class
 org\brutforcer\kafka\dto\UserDeleteEventBody.class
